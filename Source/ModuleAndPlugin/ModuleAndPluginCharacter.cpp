@@ -1,6 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "ModuleAndPluginCharacter.h"
+#include "Test/TestActor.h"
 #include "Engine/LocalPlayer.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -126,4 +127,14 @@ void AModuleAndPluginCharacter::Look(const FInputActionValue& Value)
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
+}
+
+void AModuleAndPluginCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+	GetWorld()->SpawnActor<ATestActor>(
+		FVector(0, 0, 200),
+		FRotator::ZeroRotator
+	);
 }
